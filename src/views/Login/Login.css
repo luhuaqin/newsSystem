@@ -1,0 +1,20 @@
+.loginContainer {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 500px;
+  height: 300px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0 20px;
+  z-index: 99;
+}
+
+.loginTitle {
+  width: 100%;
+  height: 80px;
+  font-size: 20px;
+  line-height: 80px;
+  text-align: center;
+  color: #fff;
+}

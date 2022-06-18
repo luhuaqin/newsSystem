@@ -1,0 +1,18 @@
+.btn {
+  margin-top: 20px;
+  
+}
+
+.draftBtn {
+  background-color: #73d13d;
+  color: #fff;
+  border: none;
+}
+.draftBtn:hover {
+  background-color: #95de64;
+  color: #fff;
+}
+
+.hidden {
+  display: none;
+}
