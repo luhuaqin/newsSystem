@@ -3,6 +3,11 @@ import { PageHeader, Descriptions } from 'antd';
 import axios from 'axios';
 import moment from 'moment';
 
+
+const auditStateList = ['未审核', '审核中', '已通过', '未通过']
+const publishStateList = ['未发布', '待发布', '已上线', '已下线']
+const tagColors = ['black', 'orange', 'green', 'red']
+
 export default function NewsPreview(props) {
   const [detailObj, setDetailObj] = useState(null)
 
@@ -13,9 +18,6 @@ export default function NewsPreview(props) {
       console.log(obj)
     })
   }, [props.match.params.id])
-
-  const auditStateList = ['未审核', '审核中', '已通过', '未通过']
-  const publishStateList = ['未发布', '待发布', '已上线', '已下线']
   
   return (
     <div>
@@ -39,10 +41,15 @@ export default function NewsPreview(props) {
           </Descriptions.Item>
           <Descriptions.Item label="区域">{detailObj?.region}</Descriptions.Item>
           <Descriptions.Item label="审核状态">
-            { auditStateList[detailObj?.auditState] }
+            <span style={{ color: tagColors[detailObj?.auditState] }}>
+              { auditStateList[detailObj?.auditState] }
+            </span>
+            
           </Descriptions.Item>
           <Descriptions.Item label="发布状态">
-            { publishStateList[detailObj?.publishState] }
+            <span style={{ color: tagColors[detailObj?.publishState] }}>
+              { publishStateList[detailObj?.publishState] }
+            </span>
           </Descriptions.Item>
           <Descriptions.Item label="访问数量">{detailObj?.view}</Descriptions.Item>
           <Descriptions.Item label="点赞数量">{detailObj?.star}</Descriptions.Item>

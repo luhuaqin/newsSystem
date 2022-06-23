@@ -1,17 +1,33 @@
 import React, { useEffect, useState } from 'react'
 import { DeleteOutlined, EditOutlined, VerticalAlignTopOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
-import { Space, Table, Tag, Button, Modal } from 'antd';
+import { Space, Table, Tag, Button, Modal, Form, message, Popconfirm } from 'antd';
 import axios from 'axios';
+// import NewsEditor from '../../../components/news-menage/NewsEditor';
+import EditModel from '../../../components/news-menage/EditModel';
 
+// const { Option } = Select
 
-export default function NewsDraft() {
+export default function NewsDraft(props) {
   const { username } = JSON.parse(localStorage.getItem('token'))
   const [data, setData] = useState([])
+  const [isModalVisible, setIsModalVisible] = useState(false)
+  const [categoryList, setCategoryList] = useState([])
+  const [newsContent, setNewsContent] = useState('')
+  const [currentNewsId, setCurrentNewsId] = useState(0)
+  const [form] = Form.useForm();
+
   useEffect(() => {
     axios.get(`/news?auditState=0&author=${username}&_expand=category`).then(res => {
       setData(res.data)
     })
   }, [username])
+
+  useEffect(() => {
+    axios.get('/categories').then(res => {
+      setCategoryList(res.data)
+    })
+  }, [])
+
   const columns = [
     {
       title: 'ID',
@@ -29,33 +45,18 @@ export default function NewsDraft() {
     },
     {
       title: '新闻分类',
-      dataIndex: 'categoryId',
-      render: (category) => {
-        switch(category) {
-          case 1: 
-            return <span>时事新闻</span>
-          case 2:
-            return <span>环球经济</span>
-          case 3:
-            return <span>科学技术</span>
-          case 4:
-            return <span>军事世界</span>
-          case 5:
-            return <span>世界体育</span>
-          case 6:
-            return <span>生活理财</span>
-          default:
-            return <span>其他</span>
-        } 
-      }
+      dataIndex: 'category',
+      render: (category) => <span>{category.title}</span>
     },
     {
       title: '操作',
       render: (_, record) => (
         <Space size="middle">
           <Button shape="circle" danger icon={<DeleteOutlined />} onClick={() => showConfirm(record)}></Button>
-          <Button shape="circle" icon={<EditOutlined />}></Button>
-          <Button type='primary' shape="circle" icon={<VerticalAlignTopOutlined />}></Button>
+          <Button shape="circle" icon={<EditOutlined />} onClick={() => handleEdit(record)}></Button>
+          <Popconfirm title="确认提交审核吗？" okText="确认" cancelText="取消" onConfirm={() => confirm(record.id)}>
+            <Button type='primary' shape="circle" icon={<VerticalAlignTopOutlined />}></Button>
+          </Popconfirm>
         </Space>
       ),
     },
@@ -75,9 +76,37 @@ export default function NewsDraft() {
     });
   }
 
+  const handleEdit = (record) => {
+    form.setFieldsValue(record)
+    setNewsContent(record.content)
+    setCurrentNewsId(record.id)
+    setIsModalVisible(true)
+  }
+
+  const confirm = (recordId) => {
+    axios.patch(`/news/${recordId}`, {
+      "auditState": 1,
+    }).then(res => {
+      message.success('提交成功')
+      setData(data.filter(item => item.id !== recordId))
+      props.history.push('/news-manage/draft')
+    }).catch(err => {
+      message.error('提交失败')
+    })
+  }
+
+  const getContent = (value) => {
+    setNewsContent(value)
+  }
+
+  const closeVisible = () => {
+    setIsModalVisible(false)
+  }
+
   return (
     <div>
       <Table columns={columns} dataSource={data} rowKey={(item) => item.id} pagination={{pageSize: 6}} />
+      <EditModel isModalVisible={isModalVisible} closeVisible={closeVisible} form={form} categoryList={categoryList} getContent={getContent} newsContent={newsContent} currentNewsId={currentNewsId} />
     </div>
   )
 }

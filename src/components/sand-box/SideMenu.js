@@ -59,12 +59,11 @@ function SideMenu(props) {
     <Sider trigger={null} collapsible collapsed={props.collapsed} style={{
       overflow: 'auto',
       height: '100vh',
-      position: 'fixed',
       left: 0,
       top: 0,
       bottom: 0,
     }}>
-        <div className="logo">全球新闻发布管理系统</div>
+        <div className="logo" style={ props.collapsed ? {overflow: 'hidden'} : {} }>全球新闻发布管理系统</div>
         <Menu
           theme="dark"
           mode="inline"

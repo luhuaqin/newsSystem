@@ -16,18 +16,16 @@ export default function NewsSandBox() {
   })
   const [collapsed, setCollapsed] = useState(false)
   return (
-    <Layout hasSider style={{ height: '100%' }}>
+    <Layout>
       <SideMenu collapsed={collapsed}></SideMenu>
-      <Layout className="site-layout" style={{
-        marginLeft: 200,
-      }}>
+      <Layout className="site-layout">
         <TopHeader collapsed={collapsed} changeCollapsed={() => {
           setCollapsed(!collapsed)
         }}></TopHeader>
         <Content
           className="site-layout-background"
           style={{
-            margin: '24px 16px 0',
+            margin: '24px 16px',
             overflow: 'auto',
             padding: 24,
             minHeight: 280

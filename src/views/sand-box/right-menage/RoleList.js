@@ -86,7 +86,7 @@ export default function RoleList() {
 
   return (
     <div>
-      <Modal title="权限分配" visible={isModalVisible} onOk={handleOk} onCancel={() => setIsModalVisible(false)}>
+      <Modal title="权限分配" visible={isModalVisible} onOk={handleOk} onCancel={() => setIsModalVisible(false)} okText="确定" cancelText="取消">
           <Tree
             checkable
             onCheck={onCheck}
