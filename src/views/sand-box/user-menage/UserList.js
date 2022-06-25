@@ -1,8 +1,15 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { DeleteOutlined, EditOutlined, ExclamationCircleOutlined, PlusOutlined } from '@ant-design/icons'
 import { Button, Modal, Space, Switch, Table, message } from 'antd'
 import axios from 'axios'
 import AddForm from '../../../components/user-menage/AddForm'
+
+
+const roleObj = {
+  '1': 'superAdmin',
+  '2': 'regionAdmin',
+  '3': 'regionEditor'
+}
 
 export default function UserList() {
   const { region, roleId, username } = JSON.parse(localStorage.getItem('token'))
@@ -16,14 +23,6 @@ export default function UserList() {
   const [isUpdateRegion, setIsUpdateRegion] = useState(false)
   const formRef = useRef(null)
 
-  const roleObj = useMemo(()=>{
-    return {
-      '1': 'superAdmin',
-      '2': 'regionAdmin',
-      '3': 'regionEditor'
-    }
-  }, [])
-
   // 请求表格数据
   useEffect(() => {
     axios.get('/users?_expand=role').then(res => {
@@ -33,7 +32,7 @@ export default function UserList() {
         ...list.filter(item=> item.region === region && roleObj[item.roleId] === 'regionEditor')
       ])
     })
-  },[region, roleId, roleObj, username])
+  },[region, roleId, username])
   // 请求区域下拉列表数据
   useEffect(() => {
     axios.get('/regions').then(res => {

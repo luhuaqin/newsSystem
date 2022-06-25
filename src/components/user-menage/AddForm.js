@@ -1,7 +1,13 @@
-import React, { forwardRef, useEffect, useState, useMemo } from 'react'
+import React, { forwardRef, useEffect, useState } from 'react'
 import { Form, Input, Select } from 'antd'
 
 const { Option } = Select
+
+const roleObj = {
+  '1': 'superAdmin',
+  '2': 'regionAdmin',
+  '3': 'regionEditor'
+}
 
 const AddForm = forwardRef((props, ref) => {
   const { roleId, region } = JSON.parse(localStorage.getItem('token'))
@@ -9,14 +15,6 @@ const AddForm = forwardRef((props, ref) => {
   useEffect(() =>{
     setIsDisabled(props.isUpdateDisabled)
   }, [props.isUpdateDisabled])
-
-  const roleObj = useMemo(()=>{
-    return {
-      '1': 'superAdmin',
-      '2': 'regionAdmin',
-      '3': 'regionEditor'
-    }
-  }, [])
 
   const checkRegionDisabled = (item) => {
     if(props.isUpdateRegion) {

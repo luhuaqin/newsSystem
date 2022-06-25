@@ -11,6 +11,7 @@ import {
 } from '@ant-design/icons';
 import { Layout, Menu } from 'antd';
 import axios from 'axios';
+import { connect } from 'react-redux';
 
 const { Sider } = Layout;
 
@@ -33,7 +34,6 @@ const iconList = {
 }
 
 function SideMenu(props) {
-
   const { role:{rights} } = JSON.parse(localStorage.getItem('token'))
 
   const [sideList, setSideList] = useState()
@@ -78,4 +78,10 @@ function SideMenu(props) {
   )
 }
 
-export default withRouter(SideMenu)
+const mapStateProps = ({
+  LoadingReducer: { isLoading }
+}) => ({
+  isLoading
+})
+// export default withRouter(SideMenu)
+export default connect(mapStateProps)(withRouter(SideMenu))
