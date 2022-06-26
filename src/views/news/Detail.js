@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { PageHeader, Descriptions, Space, message } from 'antd';
+import { PageHeader, Descriptions, Space } from 'antd';
 import axios from 'axios';
 import moment from 'moment';
 
