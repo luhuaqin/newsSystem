@@ -32,6 +32,9 @@ export default function Login(props) {
   return (
     <div style={{ background: '#45497b', height: '100%', overflow: 'hidden' }}>
       <Particles id="tsparticles" init={particlesInit} options={options} />
+      <div style={{ position: 'fixed', zIndex: 99, height: '80px', paddingLeft: '90%', marginTop: '20px' }}>
+        <a href='#/news'>查看新闻</a>
+      </div>
       <div className='loginContainer'>
         <div className='loginTitle'>全球新闻发布管理系统</div>
         <Form
