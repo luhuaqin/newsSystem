@@ -14,6 +14,8 @@ Download json-server in the global
 
 Run the server at port 5000
 
+### `npm install`
+
 ### `npm start`
 
 Runs the app in the development mode.\
