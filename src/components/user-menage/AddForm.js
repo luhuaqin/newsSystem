@@ -92,11 +92,18 @@ const AddForm = forwardRef((props, ref) => {
         <Select
           placeholder="请选择区域"
           allowClear
+          showSearch
           disabled={isDisabled}
+          filterOption={(val, option) => {
+            // val为输入的值，option为对象，option:{children: "Option中的label值"，key: "Option中的key值"，value: "Option中的value值"}
+            if(option && (option.key.indexOf(val) >= 0 || option.key.indexOf(val.toLowerCase()) >= 0 || option.children.indexOf(val) >= 0)) {
+              return true
+            }
+          }}
         >
           {
             props.regionList.map(item => {
-              return <Option value={item.value} key={item.id} disabled={checkRegionDisabled(item)}>{item.title}</Option>
+              return <Option value={item.value} key={item.pinyin} disabled={checkRegionDisabled(item)}>{item.title}</Option>
             })
           }
         </Select>

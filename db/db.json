@@ -3,6 +3,7 @@
     {
       "id": 1,
       "username": "admin",
+      "pinyin": "admin",
       "password": 123456,
       "roleState": true,
       "default": true,
@@ -11,6 +12,7 @@
     },
     {
       "username": "铁锤锤",
+      "pinyin": "tie chui chui",
       "password": "123",
       "roleState": false,
       "default": false,
@@ -20,15 +22,17 @@
     },
     {
       "username": "钢蛋蛋",
+      "pinyin": "gang dan dan",
       "password": "123",
       "roleState": true,
       "default": false,
-      "region": "南极洲",
+      "region": "北美洲",
       "roleId": 2,
       "id": 3
     },
     {
       "username": "诸葛山珍",
+      "pinyin": "zhu ge shan zhen",
       "password": "123",
       "roleState": true,
       "default": false,
@@ -38,6 +42,7 @@
     },
     {
       "username": "西门吹灯",
+      "pinyin": "xi men chui deng",
       "password": "123",
       "roleState": false,
       "default": false,
@@ -47,6 +52,7 @@
     },
     {
       "username": "轩辕翠花",
+      "pinyin": "xuan yuan cui hua",
       "password": "123",
       "roleState": true,
       "default": false,
@@ -56,6 +62,7 @@
     },
     {
       "username": "司马海味",
+      "pinyin": "si ma hai wei",
       "password": "123",
       "roleState": true,
       "default": false,
@@ -65,6 +72,7 @@
     },
     {
       "username": "咕噜墩子",
+      "pinyin": "gu lu dun zi",
       "password": "123",
       "roleState": true,
       "default": false,
@@ -398,37 +406,44 @@
     {
       "id": 1,
       "title": "亚洲",
-      "value": "亚洲"
+      "value": "亚洲",
+      "pinyin": "yazhou"
     },
     {
       "id": 2,
       "title": "欧洲",
-      "value": "欧洲"
+      "value": "欧洲",
+      "pinyin": "ouzhou"
     },
     {
       "id": 3,
       "title": "北美洲",
-      "value": "北美洲"
+      "value": "北美洲",
+      "pinyin": "beimeizhou"
     },
     {
       "id": 4,
       "title": "南美洲",
-      "value": "南美洲"
+      "value": "南美洲",
+      "pinyin": "nanmeizhou"
     },
     {
       "id": 5,
       "title": "非洲",
-      "value": "非洲"
+      "value": "非洲",
+      "pinyin": "feizhou"
     },
     {
       "id": 6,
       "title": "大洋洲",
-      "value": "大洋洲"
+      "value": "大洋洲",
+      "pinyin": "dayangzhou"
     },
     {
       "id": 7,
       "title": "南极洲",
-      "value": "南极洲"
+      "value": "南极洲",
+      "pinyin": "nanjizhou"
     }
   ],
   "news": [
